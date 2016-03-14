@@ -1,0 +1,59 @@
+h1 {
+	margin-left: 50px;
+}
+
+.box {
+	padding: 10px;
+	border: 1px solid black;
+	height: 50px;
+	width: 50px;
+	margin: 50px;
+	float: left;
+	position: relative;
+}
+
+.box img {
+	position: absolute;
+	bottom: 60px;
+	left: 55px;
+}
+
+#red_box {
+	background-color: red;
+}
+
+#orange_box {
+	background-color: orange;
+}
+
+#yellow_box {
+	background-color: yellow;
+}
+
+#green_box {
+	background-color: green;
+}
+
+#blue_box {
+	background-color: blue;
+}
+
+#purple_box {
+	background-color: purple;
+}
+
+div.box {
+	font-weight: bold;
+	color: white;
+	font-size: 15px;
+}
+
+div.ribbon {
+	position: fixed;
+	top: 0px;
+	right: 0px;
+}
+
+.box:nth-child(5) {
+	clear: both;
+}
