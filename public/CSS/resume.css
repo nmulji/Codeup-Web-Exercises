@@ -1,0 +1,23 @@
+.body{
+	background-image: url(/img/gray_plain.jpg);
+	background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.categories {
+	font-weight: bold;
+	text-decoration: underline
+}
+
+.jobs {
+	font-weight: bold;
+}
+
+.positions {
+	font-style: italic;
+}
+
+body {
+	margin: 30px;
+}
+
