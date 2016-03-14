@@ -1,0 +1,54 @@
+body {
+	padding: 20px;
+	background-image: url(/img/gray_textured.jpg);
+	font-family: 'Mandali';
+	font-weight: bold;
+}
+
+.container {
+	position: relative;
+}
+
+.rowbackground {
+	background-color: black;
+	border: 3px solid black;
+	padding: 20px;
+	position: relative;
+}
+
+.rowbackground p {
+	color: white;
+}
+
+.img-circle {
+	height: 200px;
+	width: 200px;
+	border: 3px white;
+	position: absolute;
+	right: 70px;
+	top: 30px;
+}
+
+.jumbotron {
+	background-color: black;
+	position: relative;
+}
+
+#about_me {
+	position: relative;
+	top: 40px;
+}
+
+.jumbotron h1 {
+	color: white;
+}
+
+.glyphicon {
+	color: white;
+	font-size: 40px;
+	text-align: center;
+}
+
+a:hover {
+	color: red;
+}
