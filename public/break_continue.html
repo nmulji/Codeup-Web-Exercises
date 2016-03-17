@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inline JS</title>
+</head>
+<body>
+    <script type="text/JavaScript"> 
+    	"use strict";
+
+var names = [
+	"Ben",
+	"Isaac",
+	"Melissa",
+	"Will",
+	"Natalie",
+	"Pancho"
+];
+
+for (var i = 0; i < names.length; i++) {
+	//this way below is the long way...
+	if (names[i].indexOf("i") == -1) {
+		continue;
+	}
+
+	console.log(names[i]);
+}
+
+for (var i = 0; i < names.length; i++) {
+	if (names [i] == "Will") {
+		break;
+	}
+}
+
+console.log("Cool! We found " + names[i]);
+
+</script>
+</body>
+</html>
