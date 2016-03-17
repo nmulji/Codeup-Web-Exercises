@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inline JS</title>
+</head>
+<body>
+    <script type="text/JavaScript"> 
+    	"use strict";
+     	
+var burgersNirajAte = 5;
+
+while (burgersNirajAte < 6) {
+	console.log("burgers");
+	console.log(burgersNirajAte);
+
+	burgersNirajAte++;
+}
+
+console.log("Niraj ate" + " " + burgersNirajAte + " " + "burgers!");
+
+//this is one way to do it
+do {
+	var myName = prompt("What is your name?");
+	console.log(myName);
+} while (myName == "" || myName == null);
+
+//this is another way to do it
+var myName = prompt("What is your name?");
+console.log(myName);
+
+while (myName == "" || myName == null) {
+	console.log(myName);
+	myName = prompt("What is your name?");
+}
+
+console.log(myName);
+</script>
+</body>
+</html>

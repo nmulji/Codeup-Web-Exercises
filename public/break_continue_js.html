@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inline JS</title>
+</head>
+<body>
+    <script type="text/JavaScript"> 
+    	"use strict";
+
+do {
+	var random = Math.floor((Math.random()*50)+1)
+}
+
+while (random % 2 == 0);
+	console.log("Random odd number to skip is: " + random);
+
+for (var i = 0; i <= 50; i++) {
+	if (i == random) {
+		console.log("Yikes! Skipping number: " + random)
+		continue;
+	} else if (i % 2 == 1) {
+		console.log("Here is an odd number: " + i);
+	}
+}
+
+
+</script>
+</body>
+</html>
