@@ -24,7 +24,12 @@
 
 	// loop through the array and log the values
 	for (var i = 0; i < names.length; i++) {
-	    console.log('The name at index ' + i + ' is: ' + names[i]);
+		if (names[i] == names[2]) {
+			console.log("This is my favorite person: " + names[2]);
+			continue;
+		} else {
+			console.log("The name at index " + i + " is: " + names[i]);
+		}
 	}
 
 	names.forEach(function (name, index) {

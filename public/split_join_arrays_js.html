@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Arrays</title>
+</head>
+<body>
+    <script type="text/JavaScript"> 
+(function (){
+"use strict";
+
+var planets = [
+	"Mercury",
+	"Venus",
+	"Earth",
+	"Mars",
+	"Jupiter",
+	"Saturn",
+	"Uranus",
+	"Neptune"
+];
+
+var planetsAsString = planets.join("|");
+
+console.log(planetsAsString);
+
+var planetsAsArray = planetsAsString.split("|");
+console.log(planetsAsArray);
+
+//console.log("Hello " + planets.join(", "));
+
+})();
+</script>
+</body>
+</html>

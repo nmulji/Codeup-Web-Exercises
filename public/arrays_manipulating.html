@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Arrays</title>
+</head>
+<body>
+    <script type="text/JavaScript"> 
+(function (){
+"use strict";
+
+var names = [
+	"Niraj",
+	"jordan",
+	"Heath",
+	"Teon",
+	"Marshall"
+];
+
+console.log(names);
+
+names.push("Andrew", "George");
+
+console.log(names);
+
+var oldName = names.pop();
+
+console.log(names);
+console.log(oldName);
+
+names.unshift(oldName);
+
+console.log(names);
+
+var anotherName = names.shift();
+console.log(names);
+console.log(anotherName);
+
+var teonIndex = names.indexOf("Teon");
+console.log("Teon was at index " + teonIndex);
+
+names.reverse();
+console.log(names);
+
+names.sort();
+console.log(names);
+
+ var yetAnotherName = names.splice(3, 2);
+
+ console.log(names);
+ console.log(yetAnotherName);
+
+ yetAnotherName.forEach(function (newName) {
+ 	names.push(newName);
+ });
+
+ console.log(names);
+
+//add three elements with splice()
+names.splice(3, 0, "Jarod", "Alex", "Daniel");
+
+console.log(names);
+
+var removedNames = names.splice(4, 2, "RC", "Brandon");
+console.log(names);
+
+})();
+</script>
+</body>
+</html>
