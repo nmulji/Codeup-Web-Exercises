@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JSON Intro</title>
+</head>
+<body>
+    <script type="text/JavaScript"> 
+(function (){
+"use strict";
+
+	var person = {
+
+		"firstName" : "Niraj",
+		"lastName" : "Mulji",
+
+		"sayHello" : function() {
+			console.log("Hello " + this.firstName);
+		}
+
+	}
+
+	person = {};
+	person.firstName = "Niraj";
+	person.sayHello = function() {
+
+
+	}
+	person.sayHello();
+
+
+	//start 
+
+
+
+	//books
+	var books = [
+		{
+			"title" : "Harry Potter",
+			"author" : {
+				"firstName" : "JK",
+				"lastName" : "Rowling"
+			}
+			
+		},
+		
+		{
+			"title" : "The Hunger Games",
+			"author" : {
+				"firstName" : "Suzanne",
+				"lastName" : "Collins"
+			}
+		},
+		
+		{
+			"title" : "The Lightning Thief",
+			"author" : {
+				"firstName" : "Rick",
+				"lastName" : "Riordian"
+			}
+		},
+		
+		{
+			"title" : "The Giver",
+			"author" : {
+				"firstName" : "Lois",
+				"lastName" : "Lowry"
+			}
+		},
+		
+		{
+			"title" : "Holes",
+			"author" : {
+				"firstName" : "Louis",
+				"lastName" : "Sachar"
+			}
+		}
+	];
+
+	books.forEach(function (book, index){
+		console.log("Book #" + (index + 1));
+		console.log("Title: " + book.title);
+		console.log("Author: " + book.author.firstName + " " + book.author.lastName)
+		console.log("---");
+		//console.log("The first book " + index + "is written by: " + book)
+	});
+
+})();
+
+</script>
+</body>
+</html>
