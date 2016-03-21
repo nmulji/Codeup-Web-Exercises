@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Arrays</title>
+</head>
+<body>
+    <script type="text/JavaScript"> 
+(function (){
+"use strict";
+
+
+// todo:
+// Create person object with firstName and lastName properties (set to your first and last name).
+var person = {};
+
+person.firstName = "Niraj";
+person.lastName = "Mulji";
+
+// todo:
+// Add a say hello method to the person object that alerts hello using the firstName and lastName properties.
+
+person.sayHello = function () {
+	console.log("Hello: " + this.firstName + " " + this.lastName);
+}
+
+person.sayHello()
+
+// Say hello from the person object.
+// person.sayHello();
+
+})();
+</script>
+</body>
+</html>
