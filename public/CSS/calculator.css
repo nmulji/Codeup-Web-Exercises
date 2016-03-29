@@ -1,0 +1,246 @@
+#container {
+	border: 4px solid black;
+	border-radius: 25px;
+	padding: 3px;
+	background-image: url(/img/gray_dots.png);
+    background-attachment: fixed;
+    width: 14em;
+}
+
+#container:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+#main-header {
+	text-align: center;
+	font-size: 36px;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-style: italic;
+	color: white;
+}
+
+#left_operand {
+	border: 2px solid black;
+	border-radius: 5px;
+	height: 35px;
+	width: 75px;
+	font-size: 15px;
+	font-weight: bold;
+	margin: 3px;
+	margin-bottom: 5px;
+	position: relative;
+	text-align: center;
+}
+
+#middle_input {
+	border: 2px solid black;
+	border-radius: 5px;
+	height: 35px;
+	width: 30px;
+	font-size: 15px;
+	font-weight: bold;
+	margin: 3px;
+	margin-bottom: 5px;
+	position: relative;
+	text-align: center;
+}
+
+#right_operand {
+	border: 2px solid black;
+	border-radius: 5px;
+	height: 35px;
+	width: 75px;
+	font-size: 15px;
+	font-weight: bold;
+	margin: 3px;
+	margin-bottom: 5px;
+	text-align: center;
+}
+
+.numberbuttons {
+	display:block;
+	border-radius: 50%;
+	box-shadow: 0 0 3px gray;
+	text-align: center;
+	border: 3px solid white;
+	background-color: #696969;
+	color: white;
+	font-size: 20px;
+	font-weight: bold;
+	margin: 3px;
+	height: 45px;
+	width: 49.5px;
+	float: left;
+	position: relative;
+}
+
+.numberbuttons:hover {
+	border: 3px solid red;
+	color: red;
+	font-size: 30px;
+	text-align: center;
+}
+
+.operatorbuttons {
+	display:block;
+	border-radius: 50%;
+	box-shadow: 0 0 3px gray;
+	text-align: center;
+	background-color: #696969;
+	border: 3px solid orange;
+	color: white;
+	font-size: 20px;
+	font-weight: bold;
+	margin: 3px;
+	height: 45px;
+	width: 49.5px;
+	float: left;
+	position: relative;
+}
+
+.operatorbuttons:hover {
+	border: 3px solid red;
+	color: red;
+	font-size: 30px;
+	text-align: center;
+}
+
+.clearbuttons {
+	display:block;
+	border-radius: 50%;
+	box-shadow: 0 0 3px gray;
+	text-align: center;
+	border: 3px solid white;
+	background-color: #67aded;
+	font-size: 20px;
+	font-weight: bold;
+	margin: 3px;
+	height: 45px;
+	width: 49.5px;
+	float: left;
+	position: relative;
+}
+
+.clearbuttons:hover {
+	border: 3px solid white;
+	background-color: red;
+	color: white;
+	font-size: 30px;
+	text-align: center;
+}
+
+.equalbuttons {
+	display:block;
+	border-radius: 50%;
+	box-shadow: 0 0 3px gray;
+	text-align: center;
+	border: 3px solid white;
+	background-color: #67aded;
+	font-size: 20px;
+	font-weight: bold;
+	margin: 3px;
+	height: 45px;
+	width: 49.5px;
+	float: left;
+	position: relative;
+}
+
+.equalbuttons:hover {
+	border: 3px solid white;
+	background-color: red;
+	color: white;
+	font-size: 30px;
+	text-align: center;
+}
+
+img {
+	display:block;
+	border-radius: 50%;
+	background: #464646;
+	box-shadow: 0 0 3px gray;
+	text-align: center;
+	font-weight: bold;
+	padding: 2px;
+	margin: 3px;
+	height: 41px;
+	width: 45.5px;
+	float: left;
+	position: relative;
+}
+
+.decimalbuttons {
+	display:block;
+	border-radius: 50%;
+	box-shadow: 0 0 3px gray;
+	text-align: center;
+	background-color: #696969;
+	border: 3px solid green;
+	color: white;
+	font-size: 20px;
+	font-weight: bold;
+	margin: 3px;
+	height: 45px;
+	width: 49.5px;
+	float: left;
+	position: relative;
+}
+
+.decimalbuttons:hover {
+	border: 3px solid red;
+	color: red;
+	font-size: 30px;
+	text-align: center;
+	padding: 5px;
+}
+
+.percentagebuttons {
+	display:block;
+	border-radius: 50%;
+	box-shadow: 0 0 3px gray;
+	text-align: center;
+	background-color: #696969;
+	border: 3px solid green;
+	color: white;
+	font-size: 20px;
+	font-weight: bold;
+	margin: 3px;
+	height: 45px;
+	width: 49.5px;
+	float: left;
+	position: relative;
+}
+
+.percentagebuttons:hover {
+	border: 3px solid red;
+	color: red;
+	font-size: 30px;
+	text-align: center;
+	padding: 5px;
+}
+
+.plusminusbuttons {
+	display:block;
+	border-radius: 50%;
+	box-shadow: 0 0 3px gray;
+	text-align: center;
+	background-color: #696969;
+	border: 3px solid green;
+	color: white;
+	font-size: 20px;
+	font-weight: bold;
+	margin: 3px;
+	height: 45px;
+	width: 49.5px;
+	float: left;
+	position: relative;
+}
+
+.plusminusbuttons:hover {
+	border: 3px solid red;
+	color: red;
+	font-size: 25px;
+	text-align: center;
+	padding: 5px;
+}

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    <!--Google Fonts -->
+
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/calculator.css">
+</head>
+<body>
+    <div id = "container">
+    <h1 id="main-header">Calculator</h1>
+    <form name = "calculatorfields">
+        <input type = "text" id = "left_operand">
+        <input type = "text" id = "middle_input">
+        <input type = "text" id = "right_operand">
+    </form>
+        <div class = "buttons">
+
+            <div class = "row_one">
+                <button data-number = "1" class = "numberbuttons" id = "btn_1">1</button>
+                <button data-number = "2" class = "numberbuttons" id = "btn_2">2</button>
+                <button data-number = "3" class = "numberbuttons" id = "btn_3">3</button>
+                <button data-operator = "+" class = "operatorbuttons" id = "btn_add">+</button>
+            </div>
+
+            <div class = "row_two">
+                <button data-number = "4" class = "numberbuttons" id = "btn_4">4</button>
+                <button data-number = "5" class = "numberbuttons" id = "btn_5">5</button>
+                <button data-number = "6" class = "numberbuttons" id = "btn_6">6</button>
+                <button data-operator = "-" class = "operatorbuttons" id = "btn_subtract">-</button>
+            </div>
+
+            <div class = "row_three">
+                <button data-number = "7" class = "numberbuttons" id = "btn_7">7</button>
+                <button data-number = "8" class = "numberbuttons" id = "btn_8">8</button>
+                <button data-number = "9" class = "numberbuttons" id = "btn_9">9</button>
+                <button data-operator = "*" class = "operatorbuttons" id = "btn_multiply">*</button>
+            </div>
+
+            <div class = "row_four">
+                <button data-clear = "C" class = "clearbuttons" id = "btn_clear">C</button>
+                <button data-number = "0" class = "numberbuttons" id = "btn_0">0</button>
+                <button data-equal = "=" class = "equalbuttons" id = "btn_equal">=</button>
+                <button data-operator = "/" class = "operatorbuttons" id = "btn_divide">/</button>
+            </div>
+
+             <div class = "row_five">
+                <a href="https://play.google.com/store/books/details?id=gjap55J-gygC&source=productsearch&utm_source=HA_Desktop_US&utm_medium=SEM&utm_campaign=PLA&pcampaignid=MKTAD0930BO1&gl=US&gclid=CMjYns7N2csCFUsGMgodK9oP2g&gclsrc=ds" id = "dummy" target = "_blank"><img src="img/dummy.png"></a>
+                <button data-plusminus = "+/-" class = "plusminusbuttons" id = "btn_plus_minus">+/-</button>
+                <button data-percentage = "%" class = "percentagebuttons" id = "btn_percentage">%</button>
+                <button data-decimal = "." class = "decimalbuttons" id = "btn_decimal">.</button>
+            </div>
+         
+        </div>
+    </div>
+   <script>
+
+    (function() {
+    "use strict";
+    //global variables
+            var leftoperand = document.getElementById("left_operand")
+
+            var middleoperator = document.getElementById("middle_input") 
+
+            var rightoperand = document.getElementById("right_operand") 
+
+            var leftinput = false
+
+            var result = ""
+
+
+    //number buttons input (additional note: this.style will change button colors when clicked and have it retain )
+
+            var numberButtons = document.getElementsByClassName("numberbuttons");
+
+            var numberHandler = function (event) {
+                var numberButtonValue = this.getAttribute("data-number");
+                console.log(numberButtonValue);
+                if (leftinput == false) {
+                var left_operand = document.getElementById("left_operand");
+                    left_operand.value = (left_operand.value + numberButtonValue);
+                } else {
+                    var right_operand = document.getElementById("right_operand");
+                    right_operand.value = (right_operand.value + numberButtonValue);
+                }
+            }
+
+            for (var i = 0; i < numberButtons.length; i++) {
+                numberButtons[i].addEventListener("click", numberHandler, false);
+            }
+
+
+    //operator buttons input
+
+            var operatorButtons = document.getElementsByClassName("operatorbuttons");
+
+            var operatorHandler = function (event) {
+                var operatorButtonHandler = this.getAttribute("data-operator");
+                console.log(operatorButtonHandler);
+                var middle_input = document.getElementById("middle_input")
+                    middle_input.value = operatorButtonHandler;
+                if (document.getElementById("left_operand").value !== "") {
+                    leftinput = true
+                }         
+            }
+
+            for (var i = 0; i < operatorButtons.length; i++) {
+                operatorButtons[i].addEventListener("click", operatorHandler, false);
+            }
+            
+
+    //equal buttons input
+
+            var equalButton = document.getElementById("btn_equal");
+
+            var equalHandler = function (event) {
+                console.log("equal handler called");
+                var middle = middleoperator.value;
+
+                if (middle == "+") {
+                    result = parseFloat(leftoperand.value) + parseFloat(rightoperand.value)
+                    console.log(result);
+
+                } else if (middle == "-") {
+                    result = parseFloat(leftoperand.value) - parseFloat(rightoperand.value)
+                    console.log(result);
+
+                } else if (middle == "*") {
+                    result = parseFloat(leftoperand.value) * parseFloat(rightoperand.value)
+                    console.log(result);
+
+                } else if (middle == "/") {
+                    result = parseFloat(leftoperand.value) / parseFloat(rightoperand.value)
+                    console.log(result);
+                }
+
+                leftoperand.value = result;
+                middleoperator.value = "";
+                rightoperand.value = "";
+            }
+
+            equalButton.addEventListener("click", equalHandler, false);
+
+
+    //clear button function
+
+            var clearButton = document.getElementById("btn_clear");
+
+            var clearHandler = function (event) {
+                leftoperand.value = "";
+                middleoperator.value = "";
+                rightoperand.value = "";
+                leftinput = false;
+            }
+
+            clearButton.addEventListener("click", clearHandler, false);
+      
+
+    //plus minus button function
+
+            var plus_minusButton = document.getElementsByClassName("plusminusbuttons");
+
+            var plus_minusHandler = function (event) {
+                var plus_minusValue = this.getAttribute("data-plusminus");
+                if (leftinput == false) {
+                    var left_operand = document.getElementById("left_operand");
+                    if (left_operand.value !=="") {
+                       left_operand.value = (left_operand.value * -1); 
+                    }
+            
+                } else {
+                    var right_operand = document.getElementById("right_operand");
+                    if (right_operand.value !=="") {
+                       right_operand.value = (right_operand.value * -1); 
+                    } 
+                }
+            }
+            
+            for (var i = 0; i < plus_minusButton.length; i++) {
+                plus_minusButton[i].addEventListener("click", plus_minusHandler, false);
+            }
+
+
+    //decimal button function
+
+            var decimalButton = document.getElementsByClassName("decimalbuttons");
+
+            var decimalButtonHandler = function (event) {
+                var decimalPlacer = this.getAttribute("data-decimal");
+                //write code to fix multiple decimal issue (attempt is below)
+                //var leftOperandHasDecimal = (leftoperand.value.indexOf(".") !== -1);
+                //var rightOperandHasDecimal = (rightoperand.value.indexOf(".") !== -1);
+                if (leftinput == false) {
+                    var left_operand = document.getElementById("left_operand");
+                    left_operand.value = (left_operand.value + ".");
+                } else {
+                    var right_operand = document.getElementById("right_operand");
+                    right_operand.value = (right_operand.value + ".");
+                }
+            }
+
+            for (var i = 0; i < decimalButton.length; i++) {
+                decimalButton[i].addEventListener("click", decimalButtonHandler, false);
+            }
+    
+
+    //percentage button function
+
+            var percentageButton = document.getElementsByClassName("percentagebuttons");
+
+            var percentageButtonHandler = function (event) {
+                var percentageConverter = this.getAttribute("data-percentage");
+                if (leftinput !== false) {
+                    var left_operand = document.getElementById("left_operand");
+                    left_operand.value = (left_operand.value*100).toFixed(2) + "%";
+                }
+            }
+
+             for (var i = 0; i < percentageButton.length; i++) {
+                percentageButton[i].addEventListener("click", percentageButtonHandler, false);
+            }
+
+    })();
+    </script>
+</body>
+</html>
