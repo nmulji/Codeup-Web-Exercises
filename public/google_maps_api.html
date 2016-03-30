@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style type="text/css">
+        #map-canvas {
+            width: 770px;
+            height: 481px;
+        }
+    </style>
+</head>
+<body>
+    <!-- div to hold map -->
+    <div id="map-canvas"></div>
+
+    <!-- Load the Google Maps API [DON'T FORGET TO USE A KEY] -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9sgo4U7DC1DMU5btH1CDVLA2gxk6OoEM"></script>
+
+    <!-- Script to show address on map -->
+    <script type="text/javascript">
+    (function() {
+        "use strict";
+
+        // Set our map options
+        var mapOptions = {
+            // Set the zoom level
+            zoom: 19,
+
+            // This sets the center of the map at our location
+            center: {
+                lat:  32.6715758,
+                lng: -97.20326639999996
+            },
+
+            mapTypeId: google.maps.MapTypeId.SATELLITE
+        };
+
+        //set address to geocode
+        var address = "4760 Little Rd, Arlington, TX 76017";
+
+        //Init geocoder object
+        var geocoder = new google.maps.Geocoder();
+
+
+        //Geocode our address
+        geocoder.geocode({"address": address}, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                map.setCenter(results[0].geometry.location);
+            } else {
+                alert("Geocoding was not successful - STATUS: " + status);
+            }
+        });
+
+        // Render the map
+        var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+
+        var corkys = { lat: 32.6715758, lng: -97.20326639999996 };
+
+        var marker = new google.maps.Marker({
+            position: corkys,
+            animation: google.maps.Animation.BOUNCE,
+            map: map,
+            icon: "/img/pizza.png"
+        })
+
+    //JSON
+        var restaurants = [
+            {
+            "name" : "Corky's",
+            "location" : {
+                lat : 32.6715758,
+                lng : -97.20326639999996
+            },
+            "description" : "<h4>Here are my favorite things about Corky's!</h4><ul><li>Mom and Pop's Favorite</li><li>Cheese Pizza</li><li>The Crust!</li></ul>"
+            }
+        },
+
+        {
+            "name" : "Grimaldi's",
+            "location" : {
+                lat : 32.8072796,
+                lng : -96.79660860000001
+            },
+            "description" : "<h4>Here are my favorite things about Grimaldi's!</h4><ul><li>Basil on the Pizza</li><li>Pizza with extra sauce</li><li>The bar!</li></ul>"
+            }
+        },
+
+         {
+            "name" : "Campisi's",
+            "location" : {
+                lat : 32.836281,
+                lng : -96.771679,
+            },
+            "description" : "<h4>Here are my favorite things about Campisi's!</h4><ul><li>It's a Dallas staple!</li><li>Thin crust pizza</li><li>The atmosphere</li></ul>"
+            }
+        }
+
+        ];
+
+    //end JSON
+
+    //For-Each Loop
+
+        function infowindow(marker) {
+            var favoritethings = "<h4>Here are my favorite things about Corky's!</h4><ul><li>Mom and Pop's Favorite</li><li>Cheese Pizza</li><li>The Crust!</li></ul>"
+
+            var infowindow = new google.maps.InfoWindow({
+                content: favoritethings
+            });
+
+            marker.addListener("click", function(){
+                infowindow.open(map, marker);
+            })
+        }
+        
+    
+        infowindow(marker);
+
+    })();
+    </script>
+</body>
