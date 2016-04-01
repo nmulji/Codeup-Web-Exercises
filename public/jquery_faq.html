@@ -37,6 +37,26 @@
         	});
 
 
+			$(document).ready(function() {
+				$(".national_park").each(function (index, element){
+					var firstchild = $(element).children()
+					firstchild.first().css("font-weight", "bold");
+				});
+			});
+
+			$(document).ready(function() {
+				var parent_ul = $("li").parent()
+				$("li").click(function(event) {
+					parent_ul.addClass("invisible");
+				});
+
+				$("#show_facts").click(function(event) {
+					event.preventDefault();
+					$("li").toggleClass("invisible");
+				});
+			});
+
+
 	</script>
 
 <body>
@@ -66,6 +86,36 @@
 
 	 <a href="#" id="show_answers">Click to show the answers.</a>
 
+	 <h3>Arches</h3>
+
+	    <ul class = "national_park" id="arches">
+	        <li>Located in Utah.</li>
+	        <li>Established November 12, 1971.</li>
+	        <li>Size is 76,359 acres.</li>
+	        <li>Contains more than 2,000 natural arches.</li>
+	    </ul>
+
+
+	<h3>Badlands</h3>
+	 
+	    <ul class = "national_park" id="badlands">
+	        <li>Reintroduced the black-footed ferret.</li>
+	        <li>Consists largely of sedimentary rock.</li>
+	        <li>Witnessed one of the last ghost dances in 1890.</li>
+	        <li>Has numerous fossils.</li>
+	    </ul>
+
+
+	<h3>Denali</h3>
+	 
+	    <ul class = "national_park" id="denali">
+	        <li>Located in Alaska.</li>
+	        <li>Established February 26, 1917.</li>
+	        <li>Size is 6,075,029 acres.</li>
+	        <li>Golden eagles!</li>
+	    </ul>
+
+	<a href="#" id="show_facts">Click to show the facts.</a>
 
 </body>
 </html>
