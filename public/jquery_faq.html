@@ -32,7 +32,7 @@
 
             	$("#show_answers").click(function(event) {
                 	event.preventDefault();
-                	$("dd").toggleClass("invisible");
+                	$("dd").toggle();
             	});
         	});
 
@@ -47,7 +47,7 @@
 			$(document).ready(function() {
 				var parent_ul = $("li").parent()
 				$("li").click(function(event) {
-					parent_ul.addClass("invisible");
+					parent_ul.hide();
 				});
 
 				$("#show_facts").click(function(event) {
