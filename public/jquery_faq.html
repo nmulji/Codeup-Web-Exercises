@@ -32,7 +32,7 @@
 
             	$("#show_answers").click(function(event) {
                 	event.preventDefault();
-                	$("dd").toggle();
+                	$("dd").fadeToggle();
             	});
         	});
 
@@ -46,13 +46,8 @@
 
 			$(document).ready(function() {
 				var parent_ul = $("li").parent()
-				$("li").click(function(event) {
-					parent_ul.hide();
-				});
-
-				$("#show_facts").click(function(event) {
-					event.preventDefault();
-					$("li").toggleClass("invisible");
+				$("h3").click(function(event) {
+					parent_ul.fadeToggle();
 				});
 			});
 
@@ -114,8 +109,6 @@
 	        <li>Size is 6,075,029 acres.</li>
 	        <li>Golden eagles!</li>
 	    </ul>
-
-	<a href="#" id="show_facts">Click to show the facts.</a>
 
 </body>
 </html>
