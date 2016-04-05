@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather Application</title>
+
+     <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    <!--Google Fonts -->
+
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/weather_map.css">
+
+</head>
+<body>
+
+	<h1>Weather Application</h1>
+
+	<form>
+		<p>Latitude<p>
+		<input value="29.4241" type="text" id="latitude">
+		<p>Longitude</p>
+		<input value="-98.4936" type="text" id="longitude">
+	</form>
+
+	<input value = "San Antonio" type="text">
+
+	<button class="btn" id="refresh">Show Weather</button>
+
+	<div id="days">
+	</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+<script>
+(function() {
+
+	var latitude = $("#latitude");
+	var longitude = $("#longitude");
+
+	var weatherHandler = function (event) { 
+		console.log(latitude.value);
+		$.get("http://api.openweathermap.org/data/2.5/forecast/daily", {
+	    APPID: "828570c6e942f181415aca579b3b136d",
+	    lat:    latitude.val(),
+    	lon:   longitude.val(),
+	    units: "imperial",
+	    cnt: 3
+	}).done(function(data) {
+	    console.log(data);
+
+	    var weather = data.list;
+	    $("#days").html("");
+	    for (i = 0; i < weather.length; i++) {
+	
+	    	var icon = weather[i].weather[0].icon;
+
+            var div = $("<div>");
+            div.addClass('days');
+            div.append("<p class='temp'>" + weather[i].temp.max.toFixed(0) + "&deg" + "/" + weather[i].temp.min.toFixed(0) + "&deg" + "</p>");
+            div.append('<img class="icon" src="http://openweathermap.org/img/w/' + icon + '.png">');
+            div.append("<p class='description'>" + "<b>Weather:</b> " + weather[i].weather[0].description + "</p>");
+            div.append("<p class='humidity'>" + "<b>Humidity:</b> " + weather[i].humidity + "</p>");
+            div.append("<p class='wind'>" + "<b>Wind:</b> " + weather[i].speed + "</p>");
+            div.append("<p class='pressure'>" + "<b>Pressure:</b> " + weather[i].pressure + "</p>");
+            $("#days").append(div);
+        	}
+    	});
+		};
+
+		weatherHandler();
+
+    $(document).on("click", ".btn", function(){
+        weatherHandler();
+		});
+
+})();
+</script>
+
+</body>
+</html>
