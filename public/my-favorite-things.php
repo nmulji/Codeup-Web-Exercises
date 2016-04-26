@@ -20,9 +20,9 @@ $fav_things = ['pizza', 'motorcycles', 'basketball', 'coding', 'Texas'];
         	<th>Favorite Thing 5</th>
     	</tr>
     	<tr>
-    		<?php foreach ($fav_things as $favoriteThing) { ?> 
-    		<td><?php echo $favoriteThing; ?></td>
-    		<?php } ?>
+    		<?php foreach ($fav_things as $favoriteThing): ?> 
+    		<td><?= $favoriteThing; ?></td>
+    		<?php endforeach; ?>
     	</tr>
     </table>
 </body>
