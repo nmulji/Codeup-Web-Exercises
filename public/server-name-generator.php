@@ -23,7 +23,7 @@ $rand_noun = random($nouns);
     <link rel="stylesheet" href="/css/server-name-generator.css">
 </head>
 <body>
-    <h1><?php echo "$rand_adjective" . " " . "$rand_noun\n" . PHP_EOL; ?></h1>
+    <h1><?= "$rand_adjective" . " " . "$rand_noun\n" . PHP_EOL; ?></h1>
 </body>
 </html>
 
