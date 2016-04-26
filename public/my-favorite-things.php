@@ -1,6 +1,18 @@
 <?php
 
-$fav_things = ['pizza', 'motorcycles', 'basketball', 'coding', 'Texas'];
+function pageController() {
+
+	$fav_things = ['pizza', 'motorcycles', 'basketball', 'coding', 'Texas'];
+
+	$data = array();
+
+	$data['favThings'] = $fav_things;
+
+	return $data;
+
+}
+
+extract(pageController());
 
 ?>
 
@@ -20,7 +32,7 @@ $fav_things = ['pizza', 'motorcycles', 'basketball', 'coding', 'Texas'];
         	<th>Favorite Thing 5</th>
     	</tr>
     	<tr>
-    		<?php foreach ($fav_things as $favoriteThing): ?> 
+    		<?php foreach ($favThings as $favoriteThing): ?> 
     		<td><?= $favoriteThing; ?></td>
     		<?php endforeach; ?>
     	</tr>
