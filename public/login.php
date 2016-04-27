@@ -1,6 +1,29 @@
 <?php
-var_dump($_POST);
+
+function pageController() {
+
+	$correctUser = 'guest';
+	$correctPassword = 'password';
+	$errorMessage = 'Login Failed!';
+
+	$username = $_POST['username'];
+	$password = $_POST['password'];
+
+	if ($username == $correctUser && $password == $correctPassword) {
+			header('Location: authorized.php');
+	} else {
+		echo $errorMessage;
+	}
+}
+
+if ($_POST) {
+	pageController();
+}
+
+
 ?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
