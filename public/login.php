@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 function pageController() {
 
 	$correctUser = 'guest';
@@ -10,6 +12,7 @@ function pageController() {
 	$password = $_POST['password'];
 
 	if ($username == $correctUser && $password == $correctPassword) {
+			$_SESSION['logged_in_user'] = $username;
 			header('Location: authorized.php');
 	} else {
 		echo $errorMessage;
