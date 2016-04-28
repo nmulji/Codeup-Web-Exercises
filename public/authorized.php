@@ -1,8 +1,10 @@
 <?php
 
+require 'functions.php';
+
 function pageController() {
 
-$username = $_GET['username'];
+$username = inputGet('username');
 
 	if (isset($_SESSION['logged_in_user'])) {
 		echo $username;

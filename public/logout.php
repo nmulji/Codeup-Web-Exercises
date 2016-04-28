@@ -1,5 +1,7 @@
 <?php
 
+require 'functions.php';
+
 // clear session data in memory & on disk and send user a new session cookie
 function clearSession()
 {

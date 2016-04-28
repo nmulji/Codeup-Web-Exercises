@@ -1,5 +1,7 @@
 <?php
 
+require 'functions.php';
+
 session_start();
 
 function pageController() {
@@ -8,8 +10,8 @@ function pageController() {
 	$correctPassword = 'password';
 	$errorMessage = 'Login Failed!';
 
-	$username = $_POST['username'];
-	$password = $_POST['password'];
+	$username = inputGet('username');
+	$password = inputGet('password');
 
 
 	if ($username == $correctUser && $password == $correctPassword) {
