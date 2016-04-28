@@ -11,6 +11,7 @@ function pageController() {
 	$username = $_POST['username'];
 	$password = $_POST['password'];
 
+
 	if ($username == $correctUser && $password == $correctPassword) {
 			$_SESSION['logged_in_user'] = $username;
 			header('Location: authorized.php');
@@ -21,6 +22,11 @@ function pageController() {
 
 if ($_POST) {
 	pageController();
+}
+
+if (isset($_SESSION['logged_in_user'])) {
+	header('Location: authorized.php');
+	exit;
 }
 
 
