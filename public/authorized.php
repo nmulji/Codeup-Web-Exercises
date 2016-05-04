@@ -1,17 +1,11 @@
 <?php
 
-require 'functions.php';
+require_once '../Auth.php';
+require_once '../Input.php';
 
 function pageController() {
 
-$username = inputGet('username');
-
-	if (isset($_SESSION['logged_in_user'])) {
-		echo $username;
-	} else {
-		header('Location: login.php');
-		exit;
-	}
+	Auth::check();
 }
 
 if ($_POST) {

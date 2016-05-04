@@ -1,30 +1,31 @@
 <?php
 
-require 'functions.php';
+require_once '../Auth.php';
+require_once '../Input.php';
 
 session_start();
 
-function pageController() {
+$errorMessage = '';
 
-	$correctUser = 'guest';
-	$correctPassword = 'password';
-	$errorMessage = 'Login Failed!';
-
-	$username = inputGet('username');
-	$password = inputGet('password');
-
-
-	if ($username == $correctUser && $password == $correctPassword) {
-			$_SESSION['logged_in_user'] = $username;
-			header('Location: authorized.php');
-	} else {
-		echo $errorMessage;
-	}
-}
 
 if ($_POST) {
-	pageController();
+	$errorMessage = pageController();
 }
+
+function pageController() {
+
+	$username = Input::get('username');
+    $password = Input::get('password');
+    $errorMessage = 'User $username failed to log in!';
+
+	if(Auth::attempt($username, $password) == TRUE) {
+		header('Location: authorized.php');
+	} else {
+		return $errorMessage;
+	}
+
+}
+
 
 if (isset($_SESSION['logged_in_user'])) {
 	header('Location: authorized.php');
@@ -47,6 +48,7 @@ if (isset($_SESSION['logged_in_user'])) {
         <label>Password</label>
         <input type="text" name="password"><br>
         <input type="submit">
+        <p> <?php echo $errorMessage ?></p>
     </form>
 </body>
 </html>

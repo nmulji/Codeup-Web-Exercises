@@ -1,15 +1,12 @@
 <?php
 
-require 'functions.php';
+require_once '../Auth.php';
+require_once '../Input.php';
 
 // clear session data in memory & on disk and send user a new session cookie
 function clearSession()
 {
-    // clear $_SESSION array
-    session_unset();
-
-    // delete session data on the server and send the client a new cookie
-    session_regenerate_id(true);
+	Auth::logout();
 }
 
 // start the session (or resume an existing one)
