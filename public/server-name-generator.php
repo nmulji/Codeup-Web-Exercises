@@ -1,22 +1,15 @@
 <?php
 
+require_once '../Element.php';
+
 function pageController() {
 
-	$adjectives = ['good', 'new', 'first', 'last', 'long', 'great', 'little', 'big', 'massive', 'other'];
-	$nouns = ['lion', 'dog', 'cat', 'fish', 'frog', 'tiger', 'table', 'car', 'chair', 'motorcycle'];
+	$element = new Element();
 
-	function random ($array1) {
-		$random_element = array_rand($array1);
-		return $array1[$random_element];
-	}
+	$result = $element->serverName();
 
-	$data = array();
+	return $result;
 
-	$data['adjectives'] = random($adjectives);
-
-	$data['nouns'] = random($nouns);
-
-	return $data;
 
 }
 
