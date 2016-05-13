@@ -4,18 +4,6 @@ require_once 'parks_credentials.php';
 
 require_once 'parks_connect.php';
 
+require_once 'park_seeder.php';
+
 echo $dbc->getAttribute(PDO::ATTR_CONNECTION_STATUS) . "\n";
-
-$delete_table_national_parks = 'DROP TABLE IF EXISTS national_parks';
-
-$create_table_national_parks = 'CREATE TABLE national_parks (
-    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    name VARCHAR(50) NOT NULL,
-    location VARCHAR(100) NOT NULL,
-    date_established DATE NOT NULL,
-    area_in_acres DOUBLE NOT NULL,
-    PRIMARY KEY (id)
-)';
-
-$dbc->exec($delete_table_national_parks);
-$dbc->exec($create_table_national_parks);
