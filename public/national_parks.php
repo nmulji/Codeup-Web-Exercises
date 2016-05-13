@@ -1,5 +1,21 @@
 <?php
 
+require_once '../parks_credentials.php';
+
+require_once '../parks_connect.php';
+
+function pageController($dbc)
+{
+
+	$parks = [];
+	$stmt = $dbc->query('SELECT * FROM national_parks');
+	$parks['parks'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	return $parks;
+
+}
+
+    extract(pageController($dbc));
+
 ?>
 
 <!DOCTYPE html>
@@ -16,13 +32,31 @@
     <!--Google Fonts -->
 
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="/css/login.css">
+
 
 </head>
 <body>
 
-	<div>
-	</div>
+	<table class="table table-striped">
+	  <thead>
+	    <tr>
+	      <th>Park</th>
+	      <th>Location</th>
+	      <th>Date Established</th>
+	      <th>Area of Acres</th>
+	    </tr>
+	  	</thead>
+	  	<tbody>
+	    <tr> <?php foreach ($parks as $park): ?>
+	      <td><?= $park['name']; ?></td>
+	      <td><?= $park['location']; ?></td>
+	      <td><?= $park['date_established']; ?></td>
+	      <td><?= $park['area_in_acres']; ?></td>
+	    </tr>
+	  	</tbody>
+	  	<?php endforeach ?>
+	</table>
+
 
     <!-- Latest compiled and minified JavaScript -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
