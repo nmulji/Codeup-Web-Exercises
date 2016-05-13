@@ -4,12 +4,19 @@ require_once '../parks_credentials.php';
 
 require_once '../parks_connect.php';
 
+require_once '../Input.php';
+
+
 function pageController($dbc)
 {
 
+	$count = !Input::has('count') ? 0 : Input::get('count');
+	$offsetNumber = $count * 4;
+
 	$parks = [];
-	$stmt = $dbc->query('SELECT * FROM national_parks');
+	$stmt = $dbc->query("SELECT * FROM national_parks LIMIT 4 OFFSET {$offsetNumber}");
 	$parks['parks'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	$parks['count'] = $count; 
 	return $parks;
 
 }
@@ -56,6 +63,12 @@ function pageController($dbc)
 	  	</tbody>
 	  	<?php endforeach ?>
 	</table>
+
+	<!-- Links -->
+
+	<a href="national_parks.php?count=<?= $count - 1 ?>">Previous</a>
+
+	<a href="national_parks.php?count=<?= $count + 1 ?>">Next</a>
 
 
     <!-- Latest compiled and minified JavaScript -->
