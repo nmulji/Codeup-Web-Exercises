@@ -10,18 +10,31 @@ require_once '../Input.php';
 function pageController($dbc)
 {
 
+	$pageLimit = 4;
+
 	$count = !Input::has('count') ? 0 : Input::get('count');
-	$offsetNumber = $count * 4;
+	$offsetNumber = $count * $pageLimit;
 
 	$parks = [];
-	$stmt = $dbc->query("SELECT * FROM national_parks LIMIT 4 OFFSET {$offsetNumber}");
+	$stmt = $dbc->query("SELECT * FROM national_parks LIMIT $pageLimit OFFSET {$offsetNumber}");
 	$parks['parks'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	$parks['count'] = $count; 
+
+	$maxCount = 'SELECT count(*) FROM national_parks';
+	$maxCount = $dbc->query($maxCount);
+	$maxCount = $maxCount->fetchColumn();
+	$maxCount = $maxCount / $pageLimit;
+	$maxCount = round($maxCount);
+
+	$parks['maxCount'] = $maxCount;
+
 	return $parks;
+
 
 }
 
     extract(pageController($dbc));
+
 
 ?>
 
@@ -65,11 +78,14 @@ function pageController($dbc)
 	</table>
 
 	<!-- Links -->
+	
+	<?php if ($count > 0 && $count < $maxCount) { ?>
+		<a href="national_parks.php?count=<?= $count - 1 ?>">Previous</a>
+	<?php } ?>
 
-	<a href="national_parks.php?count=<?= $count - 1 ?>">Previous</a>
-
-	<a href="national_parks.php?count=<?= $count + 1 ?>">Next</a>
-
+	<?php if ($count < $maxCount - 1) { ?>
+		<a href="national_parks.php?count=<?= $count + 1 ?>">Next</a>
+	<?php } ?>
 
     <!-- Latest compiled and minified JavaScript -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
