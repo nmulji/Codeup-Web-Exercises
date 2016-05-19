@@ -32,4 +32,28 @@ class Input
     // later in the curriculum.                                              //
     ///////////////////////////////////////////////////////////////////////////
     private function __construct() {}
+
+    public static function getString($key)
+    {
+        $potentialString = self::get($key);
+
+        if (is_numeric($potentialString)) {
+            throw new Exception ('Input must be a string');
+        } 
+
+        return $potentialString;
+    }
+
+    public static function getNumber($key)
+    {
+        $potentialNum = self::get($key);
+
+        if (!is_numeric($potentialNum)) {
+            throw new Exception ('Input must be numeric');
+        }
+
+        $potentialNum = (int)$potentialNum;
+
+        return $potentialNum;
+    }
 }
