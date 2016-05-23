@@ -9,20 +9,66 @@ require_once '../Input.php';
 
 if($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-	$add_parks = "INSERT INTO national_parks (name, location, date_established, area_in_acres, description)
-	VALUES (:name, :location, :date_established, :area_in_acres, :description)";
+	$errors = [];
 
-	$stmt = $dbc->prepare($add_parks);
+	try{
+		$name = Input::getString('name', 0, 50);
+	} catch (Exception $e){
+		$errors['name'] = $e->getMessage();
+	}
 
-	$stmt->bindValue(':name', Input::getString('name'), PDO::PARAM_STR);
-	$stmt->bindValue(':location', Input::getString('location'), PDO::PARAM_STR);
-	$stmt->bindValue(':date_established', Input::get('date_established'), PDO::PARAM_INT);
-	$stmt->bindValue(':area_in_acres', Input::getNumber('area_in_acres'), PDO::PARAM_INT);
-	$stmt->bindValue(':description', Input::getString('description'), PDO::PARAM_STR);
+	try{
+		$location = Input::getString('location', 0, 50);
+	} catch (Exception $e){
+		$errors['location'] = $e->getMessage();
+	}
 
-	$stmt->execute();
+	try{
+		$date = Input::get('date_established');
+	} catch (Exception $e){
+		$errors['date_established'] = $e->getMessage();
+	}
 
-	echo "Inserted park ID: " . $dbc->lastInsertId() . PHP_EOL;
+	try{
+		$area = Input::getNumber('area_in_acres', 0, 1000);
+	} catch (Exception $e){
+		$errors['area_in_acres'] = $e->getMessage();
+	}
+
+	try{
+		$description = Input::getString('description', 0, 1000);
+	} catch (Exception $e){
+		$errors['description'] = $e->getMessage();
+	}
+
+
+	if(empty($errors)) {
+
+		$add_parks = "INSERT INTO national_parks (name, location, date_established, area_in_acres, description)
+		VALUES (:name, :location, :date_established, :area_in_acres, :description)";
+
+		$stmt = $dbc->prepare($add_parks);
+
+
+		$stmt->bindValue(':name', $name, PDO::PARAM_STR);
+
+
+		$stmt->bindValue(':location', $location, PDO::PARAM_STR);
+
+
+		$stmt->bindValue(':date_established', $date, PDO::PARAM_INT);
+
+
+		$stmt->bindValue(':area_in_acres', $area, PDO::PARAM_INT);
+
+
+		$stmt->bindValue(':description', $description, PDO::PARAM_STR);
+
+		$stmt->execute();
+
+		echo "Inserted park ID: " . $dbc->lastInsertId() . PHP_EOL;
+	}
+
 }
 
 
@@ -130,30 +176,45 @@ function pageController($dbc)
 				<p>
 					<input placeholder="Park Name" class="form-control park_input_fields" id="name" name="name" type="text">
 				</p>
+		        <?php if(isset($errors['name'])): ?>
+		            <p><?= $errors['name'] ?></p>
+		        <?php endif; ?>
 			</div>
 
 			<div class ="form-group col-xs-6">
 				<p>
 					<input placeholder="Location" class="form-control park_input_fields" id="location" name="location" type="text">
 				</p>
+		        <?php if(isset($errors['location'])): ?>
+		            <p><?= $errors['location'] ?></p>
+		        <?php endif; ?>
 			</div>
 
 			<div class ="form-group col-xs-6">
 				<p>
 					<input class="form-control park_input_fields" id="date_established" name="date_established" type="date">
 				</p>
+		        <?php if(isset($errors['date_established'])): ?>
+		            <p><?= $errors['date_established'] ?></p>
+		        <?php endif; ?>
 			</div>
 
 			<div class ="form-group col-xs-6">
 				<p>
 					<input placeholder="Area in Acres" class="form-control park_input_fields" id="area_in_acres" name="area_in_acres" type="number">
 				</p>
+		        <?php if(isset($errors['area_in_acres'])): ?>
+		            <p><?= $errors['area_in_acres'] ?></p>
+		        <?php endif; ?>
 			</div>
 
 			<div class ="form-group col-xs-12">
 				<p>
 					<input placeholder="Describe the park..." class="form-control park_input_fields" id="description" name="description" type="text">
 				</p>
+		        <?php if(isset($errors['description'])): ?>
+		            <p><?= $errors['description'] ?></p>
+		        <?php endif; ?>
 			</div>
 
 			<div class ="form-group col-xs-6">

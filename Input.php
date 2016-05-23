@@ -33,23 +33,47 @@ class Input
     ///////////////////////////////////////////////////////////////////////////
     private function __construct() {}
 
-    public static function getString($key)
+    public static function getString($key, $min = 1, $max = 1)
     {
         $potentialString = self::get($key);
 
-        if (is_numeric($potentialString)) {
-            throw new Exception ('Input must be a string');
+        if (!is_string($key) || !is_numeric($min) || !is_numeric($max)) {
+            throw new InvalidArgumentException ('Input must be a string and min and max must be numbers!');
         } 
+
+        if (empty($potentialString)) {
+            throw new OutOfRangeException ('Input must be in range');
+        }
+
+        if(!is_string($potentialString)) {
+            throw new DomainException ('Value is wrong type');
+        }
+
+        if($potentialString < $min || $potentialString > $max) {
+            throw new LengthException ('Input is either below or above the allowable characters');
+        }
 
         return $potentialString;
     }
 
-    public static function getNumber($key)
+    public static function getNumber($key, $min = 1, $max = 1)
     {
         $potentialNum = self::get($key);
 
-        if (!is_numeric($potentialNum)) {
-            throw new Exception ('Input must be numeric');
+        if (!is_numeric($potentialNum) || !is_numeric($min) || !is_numeric($max)) {
+            throw new InvalidArgumentException ('Input must be numeric and min and max must be numbers!');
+        }
+
+        if (empty($potentialNum)) {
+            throw new OutOfRangeException ('Input must be in range');
+        }
+
+        if(!is_numeric($potentialNum)) {
+            throw new DomainException ('Value is wrong type');
+        }
+
+        if($potentialNum < $min || $potentialNum > $max) {
+            throw new RangeException ('Input is either below or above the allowable range');
         }
 
         $potentialNum = (int)$potentialNum;
