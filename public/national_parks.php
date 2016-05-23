@@ -174,7 +174,7 @@ function pageController($dbc)
 		<form method = "POST" action ="/national_parks.php">
 			<div class ="form-group col-xs-6">
 				<p>
-					<input placeholder="Park Name" class="form-control park_input_fields" id="name" name="name" type="text">
+					<input placeholder="Park Name" class="form-control park_input_fields" id="name" name="name" type="text" value="<?= Input::has ('name') ? Input::get ('name') : ''?>">
 				</p>
 		        <?php if(isset($errors['name'])): ?>
 		            <p><?= $errors['name'] ?></p>
@@ -183,7 +183,7 @@ function pageController($dbc)
 
 			<div class ="form-group col-xs-6">
 				<p>
-					<input placeholder="Location" class="form-control park_input_fields" id="location" name="location" type="text">
+					<input placeholder="Location" class="form-control park_input_fields" id="location" name="location" type="text" value="<?= Input::has ('location') ? Input::get ('location') : ''?>">
 				</p>
 		        <?php if(isset($errors['location'])): ?>
 		            <p><?= $errors['location'] ?></p>
@@ -192,7 +192,7 @@ function pageController($dbc)
 
 			<div class ="form-group col-xs-6">
 				<p>
-					<input class="form-control park_input_fields" id="date_established" name="date_established" type="date">
+					<input class="form-control park_input_fields" id="date_established" name="date_established" type="date" value="<?= Input::has ('date_established') ? Input::get ('date_established') : ''?>">
 				</p>
 		        <?php if(isset($errors['date_established'])): ?>
 		            <p><?= $errors['date_established'] ?></p>
@@ -201,7 +201,7 @@ function pageController($dbc)
 
 			<div class ="form-group col-xs-6">
 				<p>
-					<input placeholder="Area in Acres" class="form-control park_input_fields" id="area_in_acres" name="area_in_acres" type="number">
+					<input placeholder="Area in Acres" class="form-control park_input_fields" id="area_in_acres" name="area_in_acres" type="number" value="<?= Input::has ('area_in_acres') ? Input::get ('area_in_acres') : ''?>">
 				</p>
 		        <?php if(isset($errors['area_in_acres'])): ?>
 		            <p><?= $errors['area_in_acres'] ?></p>
@@ -210,7 +210,7 @@ function pageController($dbc)
 
 			<div class ="form-group col-xs-12">
 				<p>
-					<input placeholder="Describe the park..." class="form-control park_input_fields" id="description" name="description" type="text">
+					<input placeholder="Describe the park..." class="form-control park_input_fields" id="description" name="description" type="text" value="<?= Input::has ('description') ? Input::get ('description') : ''?>">
 				</p>
 		        <?php if(isset($errors['description'])): ?>
 		            <p><?= $errors['description'] ?></p>
