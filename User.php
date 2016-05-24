@@ -108,7 +108,21 @@ class User extends Model
 
         $returnAll = "SELECT * FROM users";
 
-        $returnAll->execute;
+        $stmt = self::$dbc->prepare($returnAll);
+
+        $stmt->execute();
+
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $resultsArray = [];
+
+        foreach ($results as $result)
+        {
+            $instance = new static($result);
+            $resultsArray[] = $instance;
+        }
+
+        return $resultsArray;
 
 
         // @TODO: Learning from the find method, return all the matching records

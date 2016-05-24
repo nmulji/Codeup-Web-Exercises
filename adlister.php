@@ -16,7 +16,9 @@ require_once 'User.php';
 //$firstUser->password = 'password1';
 //$firstUser->save();
 
-User::delete(10);
+$allUsers = User::all();
+
+var_dump($allUsers);
 
 ?>
 
