@@ -25,9 +25,9 @@ class User extends Model
 
         $stmt = self::$dbc->prepare($add_user);
 
-        $stmt->bindValue(':name',       $this->attributes['name'],         PDO::PARAM_STR);
-        $stmt->bindValue(':email',      $this->attributes['email'],        PDO::PARAM_STR);
-        $stmt->bindValue(':password',   $this->attributes['password'],     PDO::PARAM_STR);
+        $stmt->bindValue(':name',       $this->name,         PDO::PARAM_STR);
+        $stmt->bindValue(':email',      $this->email,        PDO::PARAM_STR);
+        $stmt->bindValue(':password',   $this->password,     PDO::PARAM_STR);
 
         $result = $stmt->execute();
 
@@ -45,22 +45,21 @@ class User extends Model
         // @TODO: You will need to iterate through all the attributes to build the prepared query
 
         $update_user = "UPDATE users
-        SET (name = :name, email = :email, password = :password)
+        SET name = :name, email = :email, password = :password
         WHERE id = :id";
 
         $stmt = self::$dbc->prepare($update_user);
 
-        $stmt->bindValue(':name',       $this->attributes['name'],         PDO::PARAM_STR);
-        $stmt->bindValue(':email',      $this->attributes['email'],        PDO::PARAM_STR);
-        $stmt->bindValue(':password',   $this->attributes['password'],     PDO::PARAM_STR);
+        $stmt->bindValue(':id',         $this->id,           PDO::PARAM_INT);
+        $stmt->bindValue(':name',       $this->name,         PDO::PARAM_STR);
+        $stmt->bindValue(':email',      $this->email,        PDO::PARAM_STR);
+        $stmt->bindValue(':password',   $this->password,     PDO::PARAM_STR);
 
-        $stmt->execute();
+        $result = $stmt->execute();
 
-        $insertedId = $dbc->lastInsertId();  
-
-        $stmt->execute([$insertedId]);
-
-        $insertedUser = $stmt->fetch(PDO::FETCH_ASSOC);  
+        if($result) {
+            $this->attributes['id'] = self::$dbc->lastInsertId();
+        }
 
     }
 
@@ -82,12 +81,10 @@ class User extends Model
 
         $stmt = self::$dbc->prepare($select_user);
 
-        $stmt->bindValue(':id',       $this->attributes['id'],         PDO::PARAM_STR);
-
+        $stmt->bindValue(':id',       $id,         PDO::PARAM_INT);
+        $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        $stmt->execute([$result]);    
-
+ 
 
         // @TODO: Store the result in a variable named $result
 
