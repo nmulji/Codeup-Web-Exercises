@@ -19,7 +19,7 @@ abstract class Model
     {
         self::dbConnect();
 
-        // @TODO: Initialize the $attributes property with the passed value
+        $this->attributes = $attributes;
     }
 
     /**
@@ -88,4 +88,22 @@ abstract class Model
      * NOTE: Because this method is abstract, any child class MUST have it defined.
      */
     protected abstract function update();
+
+
+    public static function delete($id)
+    {
+        //ANY PUBLIC STATIC FUNCTION NEEDS DB CONNECT FUNCTION 
+        self::dbConnect();
+
+        $delete_user = 'DELETE FROM users
+        WHERE id = :id';
+
+        $stmt = self::$dbc->prepare($delete_user);
+
+        $stmt->bindValue(':id',         $id,           PDO::PARAM_INT);
+
+        $result = $stmt->execute();
+
+    }
+
 }

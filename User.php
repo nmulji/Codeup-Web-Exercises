@@ -63,6 +63,7 @@ class User extends Model
 
     }
 
+
     /**
      * Find a single record in the DB based on its id
      *

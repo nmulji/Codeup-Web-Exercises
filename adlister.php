@@ -2,14 +2,21 @@
 
 require_once 'User.php';
 
-$firstUser = new User();
+//$secondUser = new User();
 
-$firstUser->name = 'Niraj Mulji';
-$firstUser->email = 'niraj.mulji@gmail.com';
-$firstUser->password = 'password';
-$firstUser->save();
+//$secondUser->name = 'Raj Mulji';
+//$secondUser->email = 'raj.mulji@gmail.com';
+//$secondUser->password = 'password2';
+//$secondUser->save();
 
-echo $firstUser->id;
+//echo $secondUser->id;
+
+//$firstUser = User::find(9);
+
+//$firstUser->password = 'password1';
+//$firstUser->save();
+
+User::delete(10);
 
 ?>
 
